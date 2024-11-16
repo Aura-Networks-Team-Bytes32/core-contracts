@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.26;
 
-contract AuraNetworksCore {
+import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
+contract AuraNetworksCore is VennFirewallConsumer {
     mapping(bytes32 => bool) public s_users;
     mapping(bytes32 => address) public s_userPKP;
     mapping(address => uint256) public s_balances;
@@ -23,12 +24,13 @@ contract AuraNetworksCore {
     function registerUser(
         bytes32 _worldcoinHash,
         bytes32 _debitCardHash,
-        address _pkpEOA,
-        bytes32 dataSigned,
-        bytes32 r,
-        bytes32 s,
-        uint8 v
-    ) external EOA_Verify(_pkpEOA, dataSigned, r, s, v) {
+        address _pkpEOA
+    ) external // bytes32 dataSigned,
+    // bytes32 r,
+    // bytes32 s,
+    // uint8 v
+    // EOA_Verify(_pkpEOA, dataSigned, r, s, v)
+    {
         require(!s_users[_worldcoinHash], "User Already Registered");
         s_users[_worldcoinHash] = true;
         s_userPKP[_debitCardHash] = _pkpEOA;
@@ -45,12 +47,13 @@ contract AuraNetworksCore {
     function spendMoney(
         address _pkpEOASpender,
         uint256 _merchantId,
-        uint256 amount,
-        bytes32 dataSigned,
-        bytes32 r,
-        bytes32 s,
-        uint8 v
-    ) external EOA_Verify(_pkpEOASpender, dataSigned, r, s, v) {
+        uint256 amount
+    ) external // bytes32 dataSigned,
+    // bytes32 r,
+    // bytes32 s,
+    // uint8 v
+    // EOA_Verify(_pkpEOASpender, dataSigned, r, s, v)
+    {
         s_balances[_pkpEOASpender] -= amount;
         address merchantAddress = s_merchants[_merchantId];
         s_balances[merchantAddress] += amount;
