@@ -3,7 +3,7 @@ pragma solidity 0.8.26;
 
 import {VennFirewallConsumer} from "@ironblocks/firewall-consumer/contracts/consumers/VennFirewallConsumer.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-contract AuraNetworksCore is VennFirewallConsumer  {
+contract AuraNetworksCore is VennFirewallConsumer{
     mapping(bytes32 => bool) public s_users;
     mapping(bytes32 => address) public s_userPKP;
     mapping(address => uint256) public s_balances;
@@ -54,7 +54,7 @@ contract AuraNetworksCore is VennFirewallConsumer  {
 
     function spendMoney(
         address _pkpEOASpender,
-        uint256 _merchantId,
+        address _mercahntEOA,
         uint256 amount
     ) external   firewallProtected// bytes32 dataSigned,
     // bytes32 r,
@@ -63,7 +63,6 @@ contract AuraNetworksCore is VennFirewallConsumer  {
     // EOA_Verify(_pkpEOASpender, dataSigned, r, s, v) firewallProtected
     {
         s_balances[_pkpEOASpender] -= amount;
-        address merchantAddress = s_merchants[_merchantId];
-        s_balances[merchantAddress] += amount;
+        s_balances[_mercahntEOA] += amount;
     }
 }

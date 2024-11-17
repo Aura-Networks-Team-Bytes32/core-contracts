@@ -2,7 +2,7 @@
     "networks": {
         "amoy": {
             "contracts": {
-                "AuraNetworksCore": "0x2ef3d082c68b794D6CE1296152F386F38058e646"
+                "AuraNetworksCore": "0x8B41E466D0fc096e75B5aaDE8F8418FF1a7CCC3e"
             },
             "policyAddress": ""
         }
