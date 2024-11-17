@@ -1,8 +1,8 @@
 {
     "networks": {
-        "holesky": {
+        "amoy": {
             "contracts": {
-                "SimpleStorage": "0x1234abcd1234abcd1234abcd1234abcd1234abcd"
+                "AuraNetworksCore": "0x2ef3d082c68b794D6CE1296152F386F38058e646"
             },
             "policyAddress": ""
         }

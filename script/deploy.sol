@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 import "forge-std/Script.sol";
-import "../src/AuraNetworksCore.sol";
+import "../contracts/AuraNetworksCore.sol";
 
 contract DeployAuraNetwork is Script {
     function run() external {
